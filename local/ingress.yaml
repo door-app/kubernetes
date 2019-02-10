@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: door-ingress
+  namespace: door
+spec:
+  rules:
+  - host: door.local
+    http:
+      paths:
+      - backend:
+          serviceName: home
+          servicePort: 80
