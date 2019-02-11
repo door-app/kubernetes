@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: door-ingress
+  namespace: door
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: door-app.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: home
+          servicePort: 80
