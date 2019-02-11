@@ -23,3 +23,28 @@ echo "$(minikube ip) door.local
 curl -I http://`minikube ip` -H 'Host: door.local'
 curl http://`minikube ip` -H 'Host: door.local'
 ```
+
+## istio
+```
+$ helm template istio-1.0.5/install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enable=true --set security.enabled=true > istio.yaml
+--set security.enable=true を入れないとPod(istio-security-post-install)がCrashLoopBackOffになる
+```
+```
+ネームスペース作成
+$ kubectl create namespace istio-system
+istio.yamlを適用
+$ kubectl apply -f istio.yaml
+```
+
+##CURL
+```
+port
+$ kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}'
+ip 
+$ minikube ip
+$ curl http://`minikube ip`:31380 -H 'Host: door.local'
+```
+
+
+
+
