@@ -25,6 +25,10 @@ jobs:
             kubectl apply -f ./istio.yaml
             kubectl apply -f ./production/namespace.yaml
             kubectl apply -f ./production/gateway.yaml
+      - run:
+          name: home 初回のみ
+          command: |
+            kubectl apply -f ./production/home.yaml
 
 workflows:
   version: 2
