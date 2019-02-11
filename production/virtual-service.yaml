@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: door-virtual-service
+  namespace: door
+spec:
+  hosts:
+  - "*"
+  # - "door.local"
+  gateways:
+  - door-gateway
+  http:
+  - match:
+      - uri:
+          prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: home
