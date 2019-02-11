@@ -2,40 +2,39 @@
 apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: "home"
+  name: "school-dashboard"
   namespace: "door"
   labels:
-    app: "home"
+    app: "school-dashboard"
 spec:
   type: "NodePort"
   ports:
     - protocol: "TCP"
       port: 80
-      targetPort: 80
-      #nodePort: 30080
+      targetPort: 4200
   selector:
-    app: "home"
+    app: "school-dashboard"
 ---
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "home"
+  name: "school-dashboard"
   namespace: "door"
   labels:
-    app: "home"
+    app: "school-dashboard"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "home"
+      app: "school-dashboard"
   template:
     metadata:
       labels:
-        app: "home"
+        app: "school-dashboard"
     spec:
       containers:
-      - name: "home"
-        image: "door/home:local"
+      - name: "school-dashboard"
+        image: "door/school-dashboard:local"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

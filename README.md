@@ -17,3 +17,9 @@ $ minikube addons list
 ```
 echo "$(minikube ip) door.local
 ```
+
+### CURL
+```
+curl -I http://`minikube ip` -H 'Host: door.local'
+curl http://`minikube ip` -H 'Host: door.local'
+```

@@ -3,11 +3,25 @@ kind: Ingress
 metadata:
   name: door-ingress
   namespace: door
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: door.local
     http:
       paths:
-      - backend:
+      - path: /dashboard
+        backend:
+          serviceName: school-dashboard
+          servicePort: 4200
+      - path: /
+        backend:
           serviceName: home
           servicePort: 80
+  - host: gateway.door.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: school-dashboard-api
+          servicePort: 3000
