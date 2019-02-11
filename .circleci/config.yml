@@ -24,6 +24,7 @@ jobs:
             kubectl config get-contexts
             kubectl apply -f ./production/namespace.yaml
             kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user="$(gcloud config get-value core/account)"
+            kubectl apply -f ./production/istio.yaml
 
 workflows:
   version: 2
