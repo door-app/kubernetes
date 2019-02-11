@@ -17,6 +17,10 @@ jobs:
             gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
             gcloud --quiet config set project door-app-prod
             gcloud --quiet config set compute/zone asia-northeast1-a
+      - run:
+          name: test
+          command: |
+            pwd
       #- run:
       #    name: dockerイメージをビルドする
       #    command: |
