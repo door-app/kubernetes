@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1aplha3
+kind: Gateway
+metadata:
+  name: door-gateway
+  namespace: door
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+    # - "door-app.net"
