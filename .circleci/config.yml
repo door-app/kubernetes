@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  deploy:
     docker:
       - image: google/cloud-sdk:206.0.0
     working_directory: ~/repo
@@ -21,11 +21,13 @@ jobs:
           name: test
           command: |
             pwd
-      #- run:
-      #    name: dockerイメージをビルドする
-      #    command: |
-      #      docker build -t gcr.io/$(gcloud config get-value project)/home:$CIRCLE_SHA1 -f Dockerfile .
-      #- run:
-      #    name: ビルドしたdockerイメージを GoogleContainerRegistory にpushする
-      #    command: |
-      #      gcloud docker -- push gcr.io/$(gcloud config get-value project)/home:$CIRCLE_SHA1
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
