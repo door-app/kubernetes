@@ -17,10 +17,11 @@ jobs:
             gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
             gcloud --quiet config set project door-app-prod
             gcloud --quiet config set compute/zone asia-northeast1-a
+            gcloud --quiet container clusters get-credentials door
       - run:
           name: test
           command: |
-            pwd
+            kubectl config get-contexts
 
 workflows:
   version: 2
