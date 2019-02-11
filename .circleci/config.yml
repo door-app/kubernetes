@@ -22,6 +22,7 @@ jobs:
           name: test
           command: |
             kubectl config get-contexts
+            kubectl apply -f ./production/namespace.yaml
 
 workflows:
   version: 2
