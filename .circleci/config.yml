@@ -22,8 +22,10 @@ jobs:
           name: test
           command: |
             kubectl config get-contexts
+            kubectl apply -f ./istio.yaml
             kubectl apply -f ./production/namespace.yaml
-            kubectl apply -f ./production/istio.yaml
+            kubectl apply -f ./production/gateway.yaml
+            kubectl apply -f ./production/virtual-service.yaml
 
 workflows:
   version: 2
