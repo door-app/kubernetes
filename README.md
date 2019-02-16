@@ -27,6 +27,15 @@ $ minikube ip
 $ curl http://`minikube ip`:31380 -H 'Host: door.local'
 ```
 
+## deploy
+```
+kubectl apply namespace istio-system
+```
+namespaceがない場合はこれいれないとだめ。
+apply istio-namespace.yaml
+とかでやるとどうかはやってない
+
+## o
 
 ### minikubeのbuilt-in Docker daemonを使用するように設定
 ↓ターミナル別でやらないとダメ
