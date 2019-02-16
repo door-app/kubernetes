@@ -22,15 +22,16 @@ jobs:
           name: test
           command: |
             kubectl config get-contexts
+            kubectl create namespace istio-system
             kubectl apply -f ./istio-1.0.5/install/kubernetes/helm/istio/templates/crds.yaml
             kubectl apply -f ./istio.yaml
             kubectl apply -f ./production/namespace.yaml
             kubectl apply -f ./production/gateway.yaml
             kubectl apply -f ./production/virtual-service.yaml
-      - run:
-          name: home 初回のみ
-          command: |
-            kubectl apply -f ./production/home.yaml
+      #- run:
+      #    name: home 初回のみ
+      #    command: |
+      #      kubectl apply -f ./production/home.yaml
       #- run:
       #    name: ingress
       #    command: |
